@@ -5,113 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top One Limousine | توب وان ليموزين</title>
     <style>
-        :root { --gold: #f39c12; --dark-bg: #111; --card-bg: #1e1e1e; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--dark-bg); color: white; margin: 0; overflow-x: hidden; }
+        :root { --gold: #f39c12; --dark: #111; --grey: #222; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--dark); color: white; margin: 0; }
         
-        /* قسم البرومو (الواجهة) */
+        /* البرومو العلوي */
         .hero { 
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://cdn.pixabay.com/photo/2016/11/22/23/44/porsche-1851246_1280.jpg');
-            background-size: cover; background-position: center; height: 70vh;
+            background-size: cover; background-position: center; height: 50vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;
         }
-        .hero h1 { font-size: 3.5rem; color: var(--gold); margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-        .hero p { font-size: 1.3rem; max-width: 700px; margin-top: 15px; color: #ddd; }
+        .hero h1 { font-size: 3rem; color: var(--gold); margin: 0; }
 
-        /* حاوية المحتوى */
-        .container { max-width: 1100px; margin: -50px auto 50px; padding: 0 20px; }
+        .container { max-width: 1100px; margin: -40px auto 50px; padding: 0 20px; }
 
-        /* فورم الحجز */
-        .booking-card { background: var(--card-bg); padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.7); border-top: 5px solid var(--gold); }
+        /* كارت الحجز */
+        .card { background: var(--grey); padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 40px; }
         .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        input, select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #333; background: #2a2a2a; color: white; box-sizing: border-box; }
-        .btn-wa { grid-column: 1 / -1; padding: 15px; background: #25d366; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; margin-top: 10px; }
-        .btn-wa:hover { background: #1ebd5b; transform: scale(1.02); }
+        input, select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #333; color: white; box-sizing: border-box; }
+        .btn-booking { grid-column: 1 / -1; padding: 15px; background: #25d366; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 10px; }
 
-        /* قسم أسطول السيارات */
-        .fleet-title { text-align: center; margin: 60px 0 30px; font-size: 2.5rem; color: var(--gold); }
-        .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .car-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; transition: 0.4s; border: 1px solid #333; }
-        .car-card:hover { transform: translateY(-10px); border-color: var(--gold); }
-        .car-card img { width: 100%; height: 220px; object-fit: cover; }
-        .car-card-body { padding: 20px; text-align: center; }
-        .car-card h3 { color: var(--gold); margin: 0 0 10px; }
-        .car-card p { color: #aaa; font-size: 0.9rem; line-height: 1.6; }
+        /* قسم الخريطة والـ GPS */
+        .location-section { background: var(--grey); padding: 25px; border-radius: 15px; text-align: center; }
+        .location-section h2 { color: var(--gold); margin-top: 0; }
+        .map-container { width: 100%; height: 300px; border-radius: 10px; overflow: hidden; margin: 20px 0; border: 2px solid var(--gold); }
+        .btn-gps { display: inline-block; padding: 12px 25px; background: var(--gold); color: black; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; transition: 0.3s; }
+        .btn-gps:hover { background: white; transform: scale(1.05); }
 
-        footer { text-align: center; padding: 40px; color: #555; font-size: 0.9rem; }
+        footer { text-align: center; padding: 30px; color: #666; }
     </style>
 </head>
 <body>
 
 <section class="hero">
     <h1>Top One Limousine</h1>
-    <p>فخامة التنقل، دقة المواعيد، وراحة لا تنتهي. نحن نأخذك أينما كنت بأفضل أسطول سيارات في مصر.</p>
+    <p>رفاهية التنقل بين يديك</p>
 </section>
 
 <div class="container">
-    <div class="booking-card">
-        <h2 style="text-align: center; color: var(--gold); margin-top: 0;">احجز رحلتك الآن</h2>
+    <div class="card">
+        <h2 style="text-align:center; color:var(--gold);">احجز رحلتك الآن</h2>
         <div class="form-grid">
-            <input type="text" placeholder="الاسم بالكامل">
-            <input type="text" placeholder="رقم الهاتف">
-            <select>
-                <option>نوع السيارة</option>
-                <option value="سيدان">سيدان فخمة</option>
-                <option value="SUV">SUV عائلية</option>
-                <option value="VIP">ليموزين VIP</option>
-            </select>
+            <input type="text" placeholder="الاسم">
+            <input type="text" placeholder="رقم الموبايل">
+            <select><option>نوع السيارة</option><option>سيدان</option><option>SUV</option></select>
             <input type="date">
-            <input type="text" placeholder="وجهة التوصيل" style="grid-column: 1 / -1;">
-            <button class="btn-wa" onclick="sendBooking()">تأكيد الحجز عبر واتساب 💬</button>
+            <input type="text" placeholder="الوجهة" style="grid-column: 1 / -1;">
+            <button class="btn-booking" onclick="sendBooking()">ارسل الطلب عبر واتساب 💬</button>
         </div>
     </div>
 
-    <h2 class="fleet-title">أسطولنا الفاخر</h2>
-    <div class="fleet-grid">
-        <div class="car-card">
-            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=800" alt="Sedan">
-            <div class="car-card-body">
-                <h3>فئة السيدان (Business)</h3>
-                <p>مرسيدس و BMW لأصحاب الأعمال والمشاوير الخاصة. أناقة وسرعة في الوصول.</p>
-            </div>
+    <div class="location-section">
+        <h2>موقعنا على الخريطة</h2>
+        <p>تشرفنا بزيارتك في مقر الشركة</p>
+        
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110502.603895232!2d31.188423!3d30.059469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb2963c1f59e!2sCairo%2C%20Egypt!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
         </div>
-        <div class="car-card">
-            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800" alt="SUV">
-            <div class="car-card-body">
-                <h3>فئة العائلات (SUV)</h3>
-                <p>تويوتا لاند كروزر وهيونداي توسان. مساحة واسعة للحقائب وراحة لجميع أفراد العائلة.</p>
-            </div>
-        </div>
-        <div class="car-card">
-            <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=800" alt="VIP">
-            <div class="car-card-body">
-                <h3>خدمات الزفاف و VIP</h3>
-                <p>سيارات مجهزة بالكامل للمناسبات الخاصة والاحتفالات مع سائقين مدربين باحترافية.</p>
-            </div>
-        </div>
+
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Cairo,Egypt" target="_blank" class="btn-gps">
+             فتح الموقع في الـ GPS (خرائط جوجل) 📍
+        </a>
     </div>
 </div>
 
-<footer>
-    &copy; 2026 Top One Limousine - Luxury Service in Egypt
-</footer>
+<footer>&copy; 2026 Top One Limousine</footer>
 
 <script>
 function sendBooking() {
-    let inputs = document.querySelectorAll("input");
-    let select = document.querySelector("select");
-    let name = inputs[0].value;
-    let phone = inputs[1].value;
-    let car = select.value;
-    let date = inputs[2].value;
-    let location = inputs[3].value;
-
-    if(!name || !phone) {
-        alert("برجاء إدخال البيانات المطلوبة");
-        return;
-    }
-
-    let message = `طلب حجز جديد 🚕%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالسيارة: ${car}%0Aالتاريخ: ${date}%0Aالوجهة: ${location}`;
-    window.open("https://wa.me/201092335265?text=" + message, "_blank");
+    let i = document.querySelectorAll("input");
+    let msg = `طلب حجز 🚕%0Aالاسم: ${i[0].value}%0Aالهاتف: ${i[1].value}%0Aالوجهة: ${i[3].value}`;
+    window.open("https://wa.me/201092335265?text=" + msg, "_blank");
 }
 </script>
 
