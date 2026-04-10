@@ -5,111 +5,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top One Limousine | توب وان ليموزين</title>
     <style>
-        :root { --gold: #f39c12; --glass: rgba(0, 0, 0, 0.85); }
+        :root { --gold: #f39c12; --light-grey: #f4f4f4; --dark-text: #222; }
         
-        /* رجعنا التصميم الداكن الفخم */
-        body, html { 
-            margin: 0; padding: 0; width: 100%; height: 100%; 
-            overflow-x: hidden; background-color: #000; 
-            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            /* خلفية فاتحة وأنيقة بدلاً من السوداء */
+            background: linear-gradient(135deg, #e0e0e0 0%, #ffffff 100%); 
+            color: var(--dark-text); 
         }
 
-        /* كود الفيديو المضمون بنسبة 100% */
-        .video-bg { 
-            position: fixed; top: 0; left: 0; 
-            width: 100%; height: 100%; z-index: -1; 
-            object-fit: cover; filter: brightness(35%); 
+        .hero-header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1449960232330-d39287cc142a?q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
         }
 
-        .overlay { position: relative; z-index: 1; padding: 20px; text-align: center; }
-        
-        header h1 { 
-            font-size: clamp(2.5rem, 8vw, 4rem); 
-            color: var(--gold); margin-top: 60px; 
-            text-shadow: 2px 2px 15px rgba(0,0,0,0.8); 
-        }
-        header p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
+        .hero-header h1 { font-size: 3.5rem; color: var(--gold); margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
 
-        /* الكارت اللي كان عاجبك في الأول */
+        .container { max-width: 1100px; margin: -50px auto 50px; padding: 0 20px; }
+
+        /* كارت الحجز بتصميم فاتح */
         .booking-card { 
-            background: var(--glass); 
-            backdrop-filter: blur(15px); 
-            padding: 35px; border-radius: 25px; 
-            border: 1px solid rgba(243, 156, 18, 0.3); 
-            max-width: 500px; margin: 0 auto; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6); 
+            background: white; 
+            padding: 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15); 
+            border-top: 6px solid var(--gold);
         }
 
-        .input-group { margin-bottom: 15px; text-align: right; }
-        input, select { 
-            width: 100%; padding: 15px; border-radius: 12px; 
-            border: 1px solid #444; background: rgba(255,255,255,0.08); 
-            color: white; font-size: 16px; box-sizing: border-box;
-        }
+        .booking-card h2 { color: var(--dark-text); text-align: center; margin-bottom: 25px; }
+
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
         
-        .btn-wa { 
-            width: 100%; padding: 18px; background: #25d366; 
-            color: white; border: none; border-radius: 12px; 
-            cursor: pointer; font-size: 20px; font-weight: bold; 
-            transition: 0.3s; margin-top: 10px; 
+        input, select { 
+            width: 100%; padding: 14px; border-radius: 10px; 
+            border: 1px solid #ddd; background: #fafafa; 
+            color: #333; font-size: 16px; box-sizing: border-box;
         }
-        .btn-wa:hover { background: #1ebd5b; transform: translateY(-3px); }
 
+        .btn-wa { 
+            grid-column: 1 / -1; padding: 18px; 
+            background: #25d366; color: white; 
+            border: none; border-radius: 10px; 
+            cursor: pointer; font-size: 20px; 
+            font-weight: bold; transition: 0.3s; 
+        }
+        .btn-wa:hover { background: #1ebd5b; transform: scale(1.01); }
+
+        /* قسم السيارات */
+        .section-title { text-align: center; color: var(--dark-text); margin: 60px 0 30px; font-size: 2.2rem; }
+        .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .car-card { 
+            background: white; border-radius: 15px; 
+            overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+            transition: 0.3s; 
+        }
+        .car-card:hover { transform: translateY(-5px); }
+        .car-card img { width: 100%; height: 220px; object-fit: cover; }
+        .car-card-body { padding: 20px; text-align: center; }
+        .car-card h3 { color: var(--gold); margin: 0; font-size: 1.5rem; }
+
+        /* قسم الموقع */
+        .map-section { 
+            background: white; padding: 30px; 
+            border-radius: 20px; text-align: center; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+            margin-top: 60px;
+        }
+        iframe { width: 100%; height: 350px; border-radius: 15px; border: 0; margin-bottom: 20px; }
+        .btn-gps { 
+            display: inline-block; padding: 15px 35px; 
+            background: var(--gold); color: white; 
+            text-decoration: none; border-radius: 10px; 
+            font-weight: bold; font-size: 1.1rem; 
+        }
     </style>
 </head>
 <body>
 
-    <video autoplay muted loop playsinline class="video-bg">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-night-time-city-traffic-4045-large.mp4" type="video/mp4">
-    </video>
+    <header class="hero-header">
+        <h1>Top One Limousine</h1>
+        <p>خدمات ليموزين VIP في كافة أنحاء الجمهورية</p>
+    </header>
 
-    <div class="overlay">
-        <header>
-            <h1>Top One Limousine</h1>
-            <p>أفخم خدمة ليموزين في مصر.. رفاهية تليق بك</p>
-        </header>
-
+    <div class="container">
         <div class="booking-card">
-            <h2 style="color:var(--gold); margin-bottom: 25px;">احجز رحلتك الآن</h2>
-            
-            <div class="input-group">
-                <input type="text" id="name" placeholder="الاسم بالكامل">
-            </div>
-            <div class="input-group">
-                <input type="text" id="phone" placeholder="رقم الهاتف">
-            </div>
-            <div class="input-group">
-                <select id="car">
-                    <option value="">اختر السيارة</option>
-                    <option>مرسيدس E200</option>
-                    <option>تويوتا لاند كروزر (SUV)</option>
-                    <option>تويوتا هايس (عائلي)</option>
+            <h2>أدخل بيانات الرحلة</h2>
+            <div class="form-grid">
+                <input type="text" id="u_name" placeholder="الاسم بالكامل">
+                <input type="text" id="u_phone" placeholder="رقم الموبايل">
+                <select id="u_car">
+                    <option value="">اختر الفئة</option>
+                    <option>سيدان (مرسيدس/بي ام)</option>
+                    <option>SUV (عائلية)</option>
+                    <option>حافلة (سياحية)</option>
                 </select>
+                <input type="text" id="u_dest" placeholder="مكان التوصيل" style="grid-column: 1 / -1;">
+                <button class="btn-wa" onclick="booking()">اطلب الآن عبر واتساب 💬</button>
             </div>
-            <div class="input-group">
-                <input type="text" id="destination" placeholder="وجهة التوصيل">
+        </div>
+
+        <h2 class="section-title">أسطولنا الفاخر</h2>
+        <div class="fleet-grid">
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=600" alt="Sedan">
+                <div class="car-card-body"><h3>Luxury Sedan</h3></div>
             </div>
-            
-            <button class="btn-wa" onclick="sendToWhatsApp()">احجز عبر واتساب 💬</button>
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=600" alt="SUV">
+                <div class="car-card-body"><h3>Premium SUV</h3></div>
+            </div>
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=600" alt="VIP">
+                <div class="car-card-body"><h3>VIP Services</h3></div>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <h2 style="margin-bottom: 20px;">موقعنا على الخريطة</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110502.60389422074!2d31.18842347621988!3d30.05948381014856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296efaa461b!2z2KfZhNmC2KfZh9ix2KnYIEdpemEsIEVneXB0!5e0!3m2!1sen!2s!4v1715000000000!5m2!1sen!2s"></iframe>
+            <br>
+            <a href="https://maps.google.com" target="_blank" class="btn-gps">التوجه للموقع عبر GPS 📍</a>
         </div>
     </div>
 
+    <footer style="text-align: center; padding: 40px; color: #888;">
+        © 2026 Top One Limousine - Excellence in Motion
+    </footer>
+
     <script>
-        function sendToWhatsApp() {
-            const name = document.getElementById("name").value;
-            const phone = document.getElementById("phone").value;
-            const car = document.getElementById("car").value;
-            const destination = document.getElementById("destination").value;
-
-            if(!name || !phone) {
-                alert("يرجى إدخال الاسم ورقم الهاتف");
-                return;
-            }
-
-            const message = `✨ طلب حجز جديد ✨%0A👤 الاسم: ${name}%0A📞 الهاتف: ${phone}%0A🚗 السيارة: ${car}%0A📍 الوجهة: ${destination}`;
-            const whatsappURL = `https://wa.me/201092335265?text=${message}`;
-            
-            window.open(whatsappURL, "_blank");
+        function booking() {
+            let n = document.getElementById("u_name").value;
+            let p = document.getElementById("u_phone").value;
+            let c = document.getElementById("u_car").value;
+            let d = document.getElementById("u_dest").value;
+            if(!n || !p) { alert("يرجى ملء البيانات الأساسية"); return; }
+            let text = `طلب ليموزين 🚕%0Aالاسم: ${n}%0Aالموبايل: ${p}%0Aالسيارة: ${c}%0Aالوجهة: ${d}`;
+            window.open("https://wa.me/201092335265?text=" + text, "_blank");
         }
     </script>
 </body>
