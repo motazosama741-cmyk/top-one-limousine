@@ -5,35 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top One Limousine</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1a1a1a; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: #2a2a2a; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 350px; text-align: center; }
-        h2 { color: #f39c12; margin-bottom: 20px; }
-        input, select { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; background: #3d3d3d; color: white; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1a1a1a; color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        .main-container { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 800px; }
+        .card { background: #2a2a2a; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; max-width: 400px; text-align: center; margin-bottom: 30px; }
+        
+        /* تعديل العنوان بالانجليزي */
+        h2.brand-name { color: #f39c12; margin-bottom: 20px; font-family: Arial, sans-serif; font-weight: bold; }
+        
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; background: #3d3d3d; color: white; box-sizing: border-box; text-align: right; }
         button { width: 100%; padding: 12px; background: #25d366; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 15px; }
         button:hover { background: #1ebd5b; }
+        
+        /* تنسيق صور السيارات */
+        .car-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; width: 100%; margin-top: 20px; }
+        .car-item { background: #2a2a2a; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .car-item img { width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; object-fit: cover; }
+        .car-item p { margin: 0; color: #f39c12; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>🚕 توب وان ليموزين</h2>
-    <input type="text" placeholder="الاسم بالكامل">
-    <input type="text" placeholder="رقم الهاتف">
-    <select>
-        <option value="غير محدد">اختار السيارة</option>
-        <option value="سيدان">سيدان (اقتصادية)</option>
-        <option value="SUV">SUV (عائلية)</option>
-        <option value="ليموزين">ليموزين (VIP)</option>
-    </select>
-    <input type="date">
-    <input type="text" placeholder="مكان التوصيل">
-    
-    <button onclick="sendBooking()">احجز الآن عبر واتساب</button>
+<div class="main-container">
+    <div class="card">
+        <h2 class="brand-name">Top One Limousine</h2>
+        
+        <input type="text" placeholder="الاسم بالكامل">
+        <input type="text" placeholder="رقم الهاتف">
+        <select>
+            <option value="غير محدد">اختار السيارة</option>
+            <option value="سيدان">سيدان (اقتصادية)</option>
+            <option value="SUV">SUV (عائلية)</option>
+            <option value="ليموزين">ليموزين (VIP)</option>
+        </select>
+        <input type="date">
+        <input type="text" placeholder="مكان التوصيل">
+        
+        <button onclick="sendBooking()">احجز الآن عبر واتساب</button>
+    </div>
+
+    <div class="car-gallery">
+        <div class="car-item">
+            <img src="https://images.unsplash.com/photo-1549317661-ef355e75f902?q=80&w=600" alt="Sedan Car">
+            <p>سيدان - مرسيدس</p>
+        </div>
+        <div class="car-item">
+            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=600" alt="SUV Car">
+            <p>SUV - لاند كروزر</p>
+        </div>
+        <div class="car-item">
+            <img src="https://images.unsplash.com/photo-1619405399517-d7fce02bf562?q=80&w=600" alt="VIP Car">
+            <p>VIP - رولز رويس</p>
+        </div>
+    </div>
 </div>
 
 <script>
 function sendBooking() {
-    // الكود بتاعك اللي أنت بعته مع تعديل بسيط لضمان دقة الاختيار
     let inputs = document.querySelectorAll("input");
     let name = inputs[0].value;
     let phone = inputs[1].value;
@@ -42,7 +69,7 @@ function sendBooking() {
     let location = inputs[3].value;
 
     if(!name || !phone) {
-        alert("يرجى ملء البيانات الأساسية");
+        alert("Please fill in the required fields.");
         return;
     }
 
