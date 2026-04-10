@@ -5,120 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top One Limousine | توب وان ليموزين</title>
     <style>
-        :root { --gold: #f39c12; --light-grey: #f4f4f4; --dark-text: #222; }
+        :root { --gold: #f39c12; --dark-bg: #0a0a0a; --card-bg: #1a1a1a; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--dark-bg); color: white; margin: 0; padding: 0; }
         
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            /* خلفية فاتحة وأنيقة بدلاً من السوداء */
-            background: linear-gradient(135deg, #e0e0e0 0%, #ffffff 100%); 
-            color: var(--dark-text); 
+        /* القسم العلوي مع صورة سيارة خلف الاسم */
+        .hero-section { 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200'); 
+            background-size: cover; background-position: center; height: 50vh; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; 
         }
+        .hero-section h1 { font-size: 3.5rem; color: var(--gold); margin: 0; text-shadow: 2px 2px 15px rgba(0,0,0,1); }
+        .hero-section p { font-size: 1.2rem; margin-top: 10px; }
 
-        .hero-header {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1449960232330-d39287cc142a?q=80&w=1200');
-            background-size: cover;
-            background-position: center;
-            height: 40vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
+        .container { max-width: 1000px; margin: -60px auto 50px; padding: 0 20px; }
 
-        .hero-header h1 { font-size: 3.5rem; color: var(--gold); margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-
-        .container { max-width: 1100px; margin: -50px auto 50px; padding: 0 20px; }
-
-        /* كارت الحجز بتصميم فاتح */
-        .booking-card { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 20px; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15); 
-            border-top: 6px solid var(--gold);
-        }
-
-        .booking-card h2 { color: var(--dark-text); text-align: center; margin-bottom: 25px; }
-
-        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        /* كارت الحجز الأسود */
+        .booking-card { background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        input, select { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid #444; background: #252525; color: white; box-sizing: border-box; }
         
-        input, select { 
-            width: 100%; padding: 14px; border-radius: 10px; 
-            border: 1px solid #ddd; background: #fafafa; 
-            color: #333; font-size: 16px; box-sizing: border-box;
-        }
+        .btn-wa { grid-column: 1 / -1; padding: 18px; background: #25d366; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 20px; font-weight: bold; margin-top: 10px; }
+        .btn-wa:hover { background: #1ebd5b; transform: translateY(-2px); }
 
-        .btn-wa { 
-            grid-column: 1 / -1; padding: 18px; 
-            background: #25d366; color: white; 
-            border: none; border-radius: 10px; 
-            cursor: pointer; font-size: 20px; 
-            font-weight: bold; transition: 0.3s; 
-        }
-        .btn-wa:hover { background: #1ebd5b; transform: scale(1.01); }
+        /* أسطول السيارات */
+        .fleet-title { text-align: center; color: var(--gold); font-size: 2.2rem; margin: 50px 0 30px; }
+        .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .car-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #333; }
+        .car-card img { width: 100%; height: 200px; object-fit: cover; }
+        .car-card-body { padding: 15px; text-align: center; }
+        .car-card h3 { color: var(--gold); margin: 0; }
 
-        /* قسم السيارات */
-        .section-title { text-align: center; color: var(--dark-text); margin: 60px 0 30px; font-size: 2.2rem; }
-        .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        
-        .car-card { 
-            background: white; border-radius: 15px; 
-            overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            transition: 0.3s; 
-        }
-        .car-card:hover { transform: translateY(-5px); }
-        .car-card img { width: 100%; height: 220px; object-fit: cover; }
-        .car-card-body { padding: 20px; text-align: center; }
-        .car-card h3 { color: var(--gold); margin: 0; font-size: 1.5rem; }
-
-        /* قسم الموقع */
-        .map-section { 
-            background: white; padding: 30px; 
-            border-radius: 20px; text-align: center; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            margin-top: 60px;
-        }
-        iframe { width: 100%; height: 350px; border-radius: 15px; border: 0; margin-bottom: 20px; }
-        .btn-gps { 
-            display: inline-block; padding: 15px 35px; 
-            background: var(--gold); color: white; 
-            text-decoration: none; border-radius: 10px; 
-            font-weight: bold; font-size: 1.1rem; 
-        }
+        /* الخريطة والـ GPS */
+        .map-section { background: var(--card-bg); padding: 25px; border-radius: 20px; text-align: center; margin-top: 50px; border: 1px solid #333; }
+        iframe { width: 100%; height: 300px; border-radius: 15px; border: 0; margin: 20px 0; }
+        .btn-gps { display: inline-block; padding: 15px 30px; background: var(--gold); color: black; text-decoration: none; border-radius: 10px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <header class="hero-header">
+    <section class="hero-section">
         <h1>Top One Limousine</h1>
-        <p>خدمات ليموزين VIP في كافة أنحاء الجمهورية</p>
-    </header>
+        <p>فخامة، راحة، ودقة في المواعيد</p>
+    </section>
 
     <div class="container">
         <div class="booking-card">
-            <h2>أدخل بيانات الرحلة</h2>
+            <h2 style="text-align:center; color:var(--gold);">احجز رحلتك الآن</h2>
             <div class="form-grid">
-                <input type="text" id="u_name" placeholder="الاسم بالكامل">
-                <input type="text" id="u_phone" placeholder="رقم الموبايل">
-                <select id="u_car">
-                    <option value="">اختر الفئة</option>
-                    <option>سيدان (مرسيدس/بي ام)</option>
-                    <option>SUV (عائلية)</option>
-                    <option>حافلة (سياحية)</option>
+                <input type="text" id="name" placeholder="الاسم بالكامل">
+                <input type="text" id="phone" placeholder="رقم الهاتف">
+                <select id="car">
+                    <option value="">نوع السيارة</option>
+                    <option>مرسيدس سيدان</option>
+                    <option>SUV عائلية</option>
+                    <option>VIP ليموزين</option>
                 </select>
-                <input type="text" id="u_dest" placeholder="مكان التوصيل" style="grid-column: 1 / -1;">
-                <button class="btn-wa" onclick="booking()">اطلب الآن عبر واتساب 💬</button>
+                <input type="date" id="date"> 
+                <input type="text" id="dest" placeholder="وجهة التوصيل" style="grid-column: 1 / -1;">
+                <button class="btn-wa" onclick="sendBooking()">اتصل بنا عبر واتساب 💬</button>
             </div>
         </div>
 
-        <h2 class="section-title">أسطولنا الفاخر</h2>
+        <h2 class="fleet-title">أسطولنا الفخم</h2>
         <div class="fleet-grid">
             <div class="car-card">
-                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=600" alt="Sedan">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=600" alt="Sedan">
                 <div class="car-card-body"><h3>Luxury Sedan</h3></div>
             </div>
             <div class="car-card">
@@ -127,31 +78,29 @@
             </div>
             <div class="car-card">
                 <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=600" alt="VIP">
-                <div class="car-card-body"><h3>VIP Services</h3></div>
+                <div class="car-card-body"><h3>VIP Class</h3></div>
             </div>
         </div>
 
         <div class="map-section">
-            <h2 style="margin-bottom: 20px;">موقعنا على الخريطة</h2>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110502.60389422074!2d31.18842347621988!3d30.05948381014856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296efaa461b!2z2KfZhNmC2KfZh9ix2KnYIEdpemEsIEVneXB0!5e0!3m2!1sen!2s!4v1715000000000!5m2!1sen!2s"></iframe>
-            <br>
-            <a href="https://maps.google.com" target="_blank" class="btn-gps">التوجه للموقع عبر GPS 📍</a>
+            <h2 style="color:var(--gold);">موقعنا</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d218360.3636499578!2d29.814806282829285!3d31.22403493521262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5c49126710fd3%3A0xb4a060e36f73ccb!2sAlexandria%2C%20Egypt!5e0!3m2!1sen!2s!4v1710000000000"></iframe>
+            <a href="https://goo.gl/maps/c6mYk7zUeYm7D" target="_blank" class="btn-gps">فتح الموقع في الـ GPS 📍</a>
         </div>
     </div>
 
-    <footer style="text-align: center; padding: 40px; color: #888;">
-        © 2026 Top One Limousine - Excellence in Motion
-    </footer>
+    <footer style="text-align:center; padding:30px; color:#555;">© 2026 Top One Limousine</footer>
 
     <script>
-        function booking() {
-            let n = document.getElementById("u_name").value;
-            let p = document.getElementById("u_phone").value;
-            let c = document.getElementById("u_car").value;
-            let d = document.getElementById("u_dest").value;
-            if(!n || !p) { alert("يرجى ملء البيانات الأساسية"); return; }
-            let text = `طلب ليموزين 🚕%0Aالاسم: ${n}%0Aالموبايل: ${p}%0Aالسيارة: ${c}%0Aالوجهة: ${d}`;
-            window.open("https://wa.me/201092335265?text=" + text, "_blank");
+        function sendBooking() {
+            let n = document.getElementById("name").value;
+            let p = document.getElementById("phone").value;
+            let c = document.getElementById("car").value;
+            let d = document.getElementById("date").value;
+            let dest = document.getElementById("dest").value;
+            if(!n || !p) { alert("أكمل البيانات من فضلك"); return; }
+            let msg = `حجز جديد 🚕%0Aالاسم: ${n}%0Aالهاتف: ${p}%0Aالسيارة: ${c}%0Aالتاريخ: ${d}%0Aالوجهة: ${dest}`;
+            window.open("https://wa.me/201092335265?text=" + msg, "_blank");
         }
     </script>
 </body>
