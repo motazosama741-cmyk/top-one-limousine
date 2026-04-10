@@ -1,0 +1,21 @@
+<script>
+function sendBooking() {
+    let name = document.querySelectorAll("input")[0].value;
+    let phone = document.querySelectorAll("input")[1].value;
+    let car = document.querySelector("select").value;
+    let date = document.querySelectorAll("input")[2].value;
+    let location = document.querySelectorAll("input")[3].value;
+
+    let message =
+`New Booking 🚗
+Name: ${name}
+Phone: ${phone}
+Car: ${car}
+Date: ${date}
+Location: ${location}`;
+
+    let url = "https://wa.me/201092335265?text=" + encodeURIComponent(message);
+
+    window.open(url, "_blank");
+}
+</script>
