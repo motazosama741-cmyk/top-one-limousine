@@ -1,12 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top One Limousine</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1a1a1a; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: #2a2a2a; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 350px; text-align: center; }
+        h2 { color: #f39c12; margin-bottom: 20px; }
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; background: #3d3d3d; color: white; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #25d366; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 15px; }
+        button:hover { background: #1ebd5b; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>🚕 توب وان ليموزين</h2>
+    <input type="text" placeholder="الاسم بالكامل">
+    <input type="text" placeholder="رقم الهاتف">
+    <select>
+        <option value="غير محدد">اختار السيارة</option>
+        <option value="سيدان">سيدان (اقتصادية)</option>
+        <option value="SUV">SUV (عائلية)</option>
+        <option value="ليموزين">ليموزين (VIP)</option>
+    </select>
+    <input type="date">
+    <input type="text" placeholder="مكان التوصيل">
+    
+    <button onclick="sendBooking()">احجز الآن عبر واتساب</button>
+</div>
+
 <script>
 function sendBooking() {
-    let name = document.querySelectorAll("input")[0].value;
-    let phone = document.querySelectorAll("input")[1].value;
+    // الكود بتاعك اللي أنت بعته مع تعديل بسيط لضمان دقة الاختيار
+    let inputs = document.querySelectorAll("input");
+    let name = inputs[0].value;
+    let phone = inputs[1].value;
     let car = document.querySelector("select").value;
-    let date = document.querySelectorAll("input")[2].value;
-    let location = document.querySelectorAll("input")[3].value;
+    let date = inputs[2].value;
+    let location = inputs[3].value;
 
-    let message =
+    if(!name || !phone) {
+        alert("يرجى ملء البيانات الأساسية");
+        return;
+    }
+
+    let message = 
 `New Booking 🚗
 Name: ${name}
 Phone: ${phone}
@@ -19,3 +59,6 @@ Location: ${location}`;
     window.open(url, "_blank");
 }
 </script>
+
+</body>
+</html>
